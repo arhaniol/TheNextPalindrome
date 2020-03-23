@@ -4,12 +4,11 @@
 #include <iostream>
 #include <string>
 //#include<bits/stdc++.h>
-#include "Palin.h"
 using namespace std;
 
+string increase(string &h1, int onemore = 0);
 int main()
 {
-	Palin palin;
 	int lines = 0,
 		i,
 		len = 0,
@@ -23,12 +22,20 @@ int main()
 	for (i = 0; i < lines; i++)
 	{
 		cin >> number;
-		//cout << palin.findPalin(number);
 		len = number.length();
 		half = len / 2;
 		if (len == 1)
 		{
-			cout<<"11";
+			if (number == "9")
+			{
+				cout << "11";
+			}
+			else
+			{
+				string sign = number.substr(0, len);
+				sign[0]++;
+				cout << sign;
+			}
 		}
 		else if (len % 2 == 0)
 		{
@@ -38,34 +45,24 @@ int main()
 
 			if (h1.compare(h2r) <= 0)
 			{
-				for (int j = h1.length() - 1; j >= 0; j--)
+				cout << increase(h1);
+			}
+			else if (h1.compare(h2r) > 0)
+			{
+				string h1r = h1;
+				reverse(h1r.begin(), h1r.end());
+				if (h2.compare(h1r) > 0)
 				{
-					if (h1[j] == '9')
-					{
-						h1[j] = '0';
-					}
-					else
-					{
-						h1[j]++;
-						break;
-					}
-				}
-				if (h1[0] == '0')
-				{
-					h1.insert(h1.begin(), '1');
-					h2 = h1.substr(0, h1.length() - 1);
+					cout << increase(h1);
 				}
 				else
 				{
 					h2 = h1;
+					reverse(h2.begin(), h2.end());
+					h1 += h2;
+					cout << h1;
 				}
 			}
-			else if (h1.compare(h2r) > 0)
-			{
-				h2 = h1;
-			}
-			reverse(h2.begin(), h2.end());
-			cout << h1 << h2;
 		}
 		else
 		{
@@ -77,40 +74,60 @@ int main()
 			if (h1.compare(h2r) <= 0)
 			{
 				h1 += mid;
-				for (int j = h1.length() - 1; j >= 0; j--)
-				{
-					if (h1[j] == '9')
-					{
-						h1[j] = '0';
-					}
-					else
-					{
-						h1[j]++;
-						break;
-					}
-				}
-				if (h1[0] == '0')
-				{
-					h1.insert(h1.begin(), '1');
-					h2 = h1.substr(0, h1.length() - 2);
-				}
-				else
-				{
-					h2 = h1.substr(0, h1.length() - 1);
-				}
-				reverse(h2.begin(), h2.end());
+				cout << increase(h1, 1);
 			}
 			else if (h1.compare(h2r) > 0)
 			{
-				h2 = h1;
-				reverse(h2.begin(), h2.end());
-				h1 += mid;
+				string h1r = h1;
+				reverse(h1r.begin(), h1r.end());
+				if (h2.compare(h1r) > 0)
+				{
+					h1 += mid;
+					cout << increase(h1, 1);
+				}
+				else
+				{
+					h2 = h1;
+					reverse(h2.begin(), h2.end());
+					h1 += mid;
+					h1 += h2;
+					cout << h1;
+				}
 			}
-			cout << h1 << h2;
 		}
 		cout << endl;
 	}
 	return 0;
+}
+
+string increase(string &h1, int onemore)
+{
+	string h2;
+
+	for (int j = h1.length() - 1; j >= 0; j--)
+	{
+		if (h1[j] == '9')
+		{
+			h1[j] = '0';
+		}
+		else
+		{
+			h1[j]++;
+			break;
+		}
+	}
+	if (h1[0] == '0')
+	{
+		h1.insert(h1.begin(), '1');
+		h2 = h1.substr(0, h1.length() - 1 - onemore);
+		reverse(h2.begin(), h2.end());
+	}
+	else
+	{
+		h2 = h1.substr(0, h1.length() - onemore);
+		reverse(h2.begin(), h2.end());
+	}
+	return h1 += h2;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -28,7 +28,7 @@ namespace PTest
 		{
 			Palin palin;
 			string input = "1",
-				output = "11";
+				output = "2";
 			Assert::AreEqual(output, palin.findPalin(input));
 		}
 		TEST_METHOD(Test9)
@@ -127,6 +127,62 @@ namespace PTest
 			Palin palin;
 			string input = "7065",
 				output = "7117";
+			Assert::AreEqual(output, palin.findPalin(input));
+		}
+		TEST_METHOD(Test4002)
+		{
+			Palin palin;
+			string input = "4002",
+				output = "4004";
+			Assert::AreEqual(output, palin.findPalin(input));
+		}
+		TEST_METHOD(Test70265)
+		{
+			Palin palin;
+			string input = "70265",
+				output = "70307";
+			Assert::AreEqual(output, palin.findPalin(input));
+		}
+		TEST_METHOD(Test101)
+		{
+			Palin palin;
+			string input = "101",
+				output = "111";
+			Assert::AreEqual(output, palin.findPalin(input));
+		}
+		TEST_METHOD(Test1001)
+		{
+			Palin palin;
+			string input = "1001",
+				output = "1111";
+			Assert::AreEqual(output, palin.findPalin(input));
+		}
+		TEST_METHOD(Test1010)
+		{
+			Palin palin;
+			string input = "1010",
+				output = "1111";
+			Assert::AreEqual(output, palin.findPalin(input));
+		}
+		TEST_METHOD(Test199)
+		{
+			Palin palin;
+			string input = "199",
+				output = "202";
+			Assert::AreEqual(output, palin.findPalin(input));
+		}
+		TEST_METHOD(Test0)
+		{
+			Palin palin;
+			string input = "0",
+				output = "1";
+			Assert::AreEqual(output, palin.findPalin(input));
+		}
+		TEST_METHOD(Test3)
+		{
+			Palin palin;
+			string input = "3",
+				output = "4";
 			Assert::AreEqual(output, palin.findPalin(input));
 		}
 	};
